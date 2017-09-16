@@ -1,24 +1,49 @@
+@import url('https://fonts.googleapis.com/css?family=Mate+SC');
+/* font-family: 'Mate SC', serif; */
+@import url('https://fonts.googleapis.com/css?family=Mate|Mate+SC');
+/* font-family: 'Mate', serif; */
+
+a {
+  text-decoration: none;
+  color: #616161;
+}
+
 .App {
   text-align: center;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+.title {
+  text-align: left;
+  font-size: 40px;
+  font-family: 'Mate SC', serif;
 }
 
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
+.blue {
+  color: #2196F3;
 }
 
-.App-intro {
-  font-size: large;
+.top-strip {
+  height: 10px;
+  width: 100vw;
+  background-color: #2196F3;
 }
 
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+.navLink {
+  font-family: 'Mate', serif;
+  font-size: 35px;
+  padding-top: 5px;
+  color: #616161;
+  text-decoration: none !important;
+}
+.navLink:hover {
+  background-color: #2196F3;
+  cursor: pointer;
+}
+
+#nav-row {
+  border-bottom: 1px solid #9E9E9E;
+}
+
+.activeLink {
+  color: black !important;
 }
