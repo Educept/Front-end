@@ -34,7 +34,7 @@ class Test extends Component {
     if (this.state.currentNum >= this.props.max) {
       this.props.history.push(`/test/results/${this.state.numberCorrect}/${this.state.max}`);
     } else {
-      if (this.props.type === 'derivates') {
+      if (this.props.type === 'derivatives') {
         $.get('http://10.33.2.152:3000/api/getQuestion', (data, status) => {
           this.updateData(data);
         }); 
@@ -71,7 +71,8 @@ class Test extends Component {
 
   checkAnswer(userAnswer, correctAnswer) {
     if (userAnswer === correctAnswer) {
-      this.setState({numberCorrect: this.state.numberCorrect++});
+      let num = this.state.numberCorrect + 1;
+      this.setState({numberCorrect: num});
       return true;
     }
     return false;

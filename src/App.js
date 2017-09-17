@@ -8,6 +8,8 @@ import Sites from './Sites';
 import Test from './Test';
 import ResultCard from './ResultCard'
 
+import shuffle from 'shuffle-array'
+
 import './App.css';
 
 class App extends Component {
@@ -47,6 +49,13 @@ class App extends Component {
             return <ResultCard numCorrect={props.match.params.numCorrect} numTotal={props.match.params.numTotal} />
           }
         }/>
+        <Route exact path="/test/:uid" render={
+          function(props) {
+            let arr = ['derivatives', 'algebra', 'integrals'];
+            arr = shuffle(arr);
+            return <Test type={arr[0]} max={5}/>
+          }
+        } />
       </div>
     );
   }

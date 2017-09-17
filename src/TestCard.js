@@ -7,10 +7,9 @@ import CardHeader from './CardHeader';
 import './TestCard.css'
 
 const TestCard = props => {
-  let toggle = 0;
-
   const submitAnswer = () => {
-    if (toggle === 0) {
+
+    if (document.querySelector('#submitButton').textContent !== "Next Question") {
       let answerNumber = props.getAnswerIndex();
       let userAnswer = -1;
       document.querySelectorAll('.radio-input').forEach((input, index) => {
@@ -26,10 +25,9 @@ const TestCard = props => {
         document.querySelector(`#radiob-${userAnswer}`).style.backgroundColor = '#F44336';
       }
       document.querySelector('#submitButton').textContent = "Next Question";
-      toggle = 1;
     } else {
+      console.log('hi');
       props.nextQuestion(); 
-      toggle = 0;
       for (let i = 0; i < 4; i++) {
         document.querySelector(`#radiob-${i}`).style.backgroundColor = '#fff';
       }

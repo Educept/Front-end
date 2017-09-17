@@ -1,0 +1,55 @@
+.body-container {
+  margin-top: 1rem;
+}
+
+input:placeholder-shown + label {
+  opacity:0;
+  transform: translateY(100%);
+}
+
+input {
+  width: 100%;
+  padding:10px;
+  margin-top: 20px;
+  border:2px solid black;
+  transition: all 0.1s;
+  font-size:20px;
+}
+
+.group {
+  width: 90%;
+  position: relative;
+  margin: 0 auto;
+  margin-bottom: 2rem;
+}
+
+.btn-margin {
+  font-size: 20px;
+  display: flex;
+  justify-content: flex-start; 
+  margin-top: 1.5rem;
+}
+
+input + label {
+  border:1px solid black;
+  position: absolute;
+  top:0;
+  left: 20px;
+  transition: all 0.1s;
+  opacity:1;
+  background:white;
+  border:2px solid;
+  border-width: 0 2px 0 2px;
+  padding:0 5px;
+  transform: translateY(calc(50% + 5px));
+}
+
+
+input:focus {
+  outline:0;
+  border-color:#2196F3;
+}
+
+input:focus + label {
+  border-color:#2196F3;
+}

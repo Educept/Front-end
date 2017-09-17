@@ -18,7 +18,7 @@ class Practice extends Component {
       numOfQuestions: 0,
       options: [
         { value: 'algebra', label: 'Algebra' },
-        { value: 'derivates', label: 'Derivates' },
+        { value: 'derivatives', label: 'Derivates' },
         { value: 'integrals', label: 'Integrals' }
       ],
       numOptions: [
