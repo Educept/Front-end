@@ -1,0 +1,14 @@
+.card-header {
+  text-align: center;
+  font-family: 'Mate', serif;
+}
+
+.header {
+  margin: 10px auto;
+  font-size: 50px;
+  color: #FF9800;
+}
+
+.medium-margin {
+  margin-top: 5rem;
+}
