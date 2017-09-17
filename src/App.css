@@ -2,6 +2,12 @@
 /* font-family: 'Mate SC', serif; */
 @import url('https://fonts.googleapis.com/css?family=Mate|Mate+SC');
 /* font-family: 'Mate', serif; */
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+/* font-family: 'Open Sans', sans-serif; */
+
+label {
+  font-family: 'Open Sans', sans-serif;
+}
 
 a {
   text-decoration: none;
