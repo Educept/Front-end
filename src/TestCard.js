@@ -7,41 +7,36 @@ import CardHeader from './CardHeader';
 import './TestCard.css'
 
 const TestCard = props => {
-  let toggle = 0;
 
   const submitAnswer = () => {
-    if (toggle === 0) {
-      let answerNumber = props.getAnswerIndex();
-      let userAnswer = -1;
-      document.querySelectorAll('.radio-input').forEach((input, index) => {
-        if (input.checked) {
-          userAnswer = index;
-        }
-      });
-
-      if (props.checkAnswer(userAnswer, answerNumber)) {
-        document.querySelector(`#radiob-${answerNumber}`).style.backgroundColor = '#76FF03';
-      } else {
-        document.querySelector(`#radiob-${answerNumber}`).style.backgroundColor = '#76FF03';
-        document.querySelector(`#radiob-${userAnswer}`).style.backgroundColor = '#F44336';
+    let answerNumber = props.getAnswerIndex();
+    let userAnswer = -1;
+    document.querySelectorAll('.radio-input').forEach((input, index) => {
+      if (input.checked) {
+        userAnswer = index;
       }
-      document.querySelector('#submitButton').textContent = "Next Question";
-      toggle = 1;
+    });
+
+    if (props.checkAnswer(userAnswer, answerNumber)) {
+      document.querySelector(`#radiob-${answerNumber}`).style.backgroundColor = '#76FF03';
     } else {
-      props.nextQuestion();
-      toggle = 0;
-      for (let i = 0; i < 4; i++) {
-        document.querySelector(`#radiob-${i}`).style.backgroundColor = '#fff';
-      }
-
-      document.querySelectorAll('.radio-input').forEach((input, index) => {
-        if (input.checked) {
-          input.checked = false;
-        }
-      });
-
-      document.querySelector('#submitButton').textContent = "Submit";
+      document.querySelector(`#radiob-${answerNumber}`).style.backgroundColor = '#76FF03';
+      document.querySelector(`#radiob-${userAnswer}`).style.backgroundColor = '#F44336';
     }
+  }
+  
+  function handleNext() {
+    props.nextQuestion();
+    
+    for (let i = 0; i < 4; i++) {
+      document.querySelector(`#radiob-${i}`).style.backgroundColor = '#fff';
+    }
+
+    document.querySelectorAll('.radio-input').forEach((input, index) => {
+      if (input.checked) {
+        input.checked = false;
+      }
+    });
   }
 
   return (
@@ -82,6 +77,7 @@ const TestCard = props => {
               <Row>
                 <Col lg={12}>
                   <button id="submitButton" className="btn margin large-btn-font" onClick={submitAnswer}>Submit</button>
+                  <button id="nextQuestion" className="btn margin large-btn-font" onClick={handleNext}>Next question</button>
                 </Col>
               </Row>
             </div>

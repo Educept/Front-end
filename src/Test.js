@@ -29,20 +29,24 @@ class Test extends Component {
 
   componentWillMount() {
     this.setState({type: this.props.type});
-    this.setState({max: this.props.max}, this.nextQuestion());  
+    this.setState({max: this.props.max});
+    
+    this.nextQuestion();
   }  
 
   nextQuestion() {
-    if (this.state.currentNum > this.props.max) {
-      this.props.history.push(`/test/results/${this.state.numberCorrect}/${this.state.max}`);
-    } else {
-      if (this.props.type === 'derivates') {
+    // if (this.state.currentNum > this.props.max) {
+    //   this.props.history.push(`/test/results/${this.state.numberCorrect}/${this.state.max}`);
+    // } else {
+      // if (this.props.type === 'derivates') {
         $.get('http://10.33.2.152:3000/api/getQuestion', (data, status) => {}); 
-      } else if (this.state.type === 'algebra') {
-        $.get('http://10.33.2.152:3000/api/getQuestion3', (data, status) => {}); 
-      } else {
-        $.get('http://10.33.2.152:3000/api/getQuestion2', (data, status) => {}); 
-      }
+      // } else if (this.props.type === 'algebra') {
+      //   $.get('http://10.33.2.152:3000/api/getQuestion3', (data, status) => {}); 
+      // } else {
+      //   $.get('http://10.33.2.152:3000/api/getQuestion2', (data, status) => {}); 
+      // }
+
+      console.log('entered next question');
 
       socket.on('clientQ', (data) => {
         console.log(data);  
@@ -51,9 +55,11 @@ class Test extends Component {
         let answers = [data[1], data[2], data[3], data[4]];
         answers = shuffle(answers);
         this.setState({answers});
-        this.setState({currentNum: this.state.currentNum + 1});
+        let num = this.state.currentNum + 1;
+        this.setState({currentNum: num});
       })
-    }
+
+    //}
   }
 
   getAnswerIndex() {
@@ -91,4 +97,4 @@ class Test extends Component {
   }
 }
 
-export default withRouter(Test);
+export default Test;
