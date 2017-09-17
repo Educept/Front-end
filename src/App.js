@@ -6,7 +6,6 @@ import Flashcards from './Flashcards';
 import Practice from './Practice';
 import Sites from './Sites';
 import Test from './Test';
-import Results from './Results'
 
 import './App.css';
 
@@ -40,11 +39,6 @@ class App extends Component {
         <Route path="/test/practice/:uid/:subject/:numProblems" render={
           function(props) {
             return <Test type={props.match.params.subject} max={props.match.params.numProblems}/>
-          }
-        }/>
-        <Route path="/test/results/:numCorrect/:numAsked" render={
-          function(props) {
-            return <Results numCorrect={props.match.params.numCorrect} numAsked={props.match.params.numAsked}/>
           }
         }/>
       </div>

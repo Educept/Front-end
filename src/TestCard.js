@@ -7,21 +7,26 @@ import CardHeader from './CardHeader';
 import './TestCard.css'
 
 const TestCard = props => {
+  let toggle = 0;
 
   const submitAnswer = () => {
-    let answerNumber = props.getAnswerIndex();
-    let userAnswer = -1;
-    document.querySelectorAll('.radio-input').forEach((input, index) => {
-      if (input.checked) {
-        userAnswer = index;
-      }
-    });
+    if (toggle === 0) {
+      let answerNumber = props.getAnswerIndex();
+      let userAnswer = -1;
+      document.querySelectorAll('.radio-input').forEach((input, index) => {
+        if (input.checked) {
+          userAnswer = index;
+        }
+      });
 
-    if (props.checkAnswer(userAnswer, answerNumber)) {
-      document.querySelector(`#radiob-${answerNumber}`).style.backgroundColor = '#76FF03';
+      if (props.checkAnswer(userAnswer, answerNumber)) {
+        document.querySelector(`#radiob-${answerNumber}`).style.backgroundColor = '#76FF03';
+      } else {
+        document.querySelector(`#radiob-${answerNumber}`).style.backgroundColor = '#76FF03';
+        document.querySelector(`#radiob-${userAnswer}`).style.backgroundColor = '#F44336';
+      }
     } else {
-      document.querySelector(`#radiob-${answerNumber}`).style.backgroundColor = '#76FF03';
-      document.querySelector(`#radiob-${userAnswer}`).style.backgroundColor = '#F44336';
+
     }
   }
   
@@ -76,8 +81,7 @@ const TestCard = props => {
               </Row>
               <Row>
                 <Col lg={12}>
-                  <button id="submitButton" className="btn margin large-btn-font" onClick={submitAnswer}>Submit</button>
-                  <button id="nextQuestion" className="btn margin large-btn-font" onClick={handleNext}>Next question</button>
+                  <button className="btn margin large-btn-font" onClick={submitAnswer}>Submit</button>
                 </Col>
               </Row>
             </div>
