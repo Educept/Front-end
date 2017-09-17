@@ -9,7 +9,15 @@ import Sites from './Sites';
 import './App.css';
 
 class App extends Component {
-  render() {
+  constructor(props) {
+    super(props);
+    
+    this.state = {
+      uid: this.props.match.params.uid,
+    }
+  }
+
+  render(props) {
     return (
       <div className="App">
         <div className="top-strip"></div>
@@ -24,13 +32,11 @@ class App extends Component {
           </Row>
         </Container>
 
-
-        <Route exact path="/" render={() => (
-          <Redirect to="/flashcards"/>
-        )}/>
-        <Route exact path="/flashcards/:uid" Component={Flashcards} />
-        <Route path="/practice/:uid" Component={Practice} />
-        <Route path="/sites/:uid" Component={Sites} />
+        <Route exact path="/flashcards" component={Flashcards} />
+        <Route path="/practice" render={() => (
+          <Practice uid={this.state.uid}/>
+        )} /> 
+        <Route path="/sites" component={Sites} />
       </div>
     );
   }

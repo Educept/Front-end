@@ -8,7 +8,7 @@ import registerServiceWorker from './registerServiceWorker';
 
 ReactDOM.render(
   <Router>
-    <Route component={App} />
+    <Route path="/:tab/:uid" component={App} />
   </Router>, 
   document.getElementById('root'));
 registerServiceWorker();
