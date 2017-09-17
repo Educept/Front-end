@@ -36,7 +36,7 @@ class Practice extends Component {
       }
       numOptionsArray[i - 1] = obj;
     }
-    this.setState({numOptions: numOptionsArray}, () => {console.log(this.state.numOptions)}); 
+    this.setState({numOptions: numOptionsArray}); 
   }
   
 
