@@ -1,10 +1,14 @@
 import React, { Component } from 'react';
 import { Container } from 'react-grid-system'
 
+import openSocket from 'socket.io-client';
+
 import TestCard from './TestCard';
 import $ from 'jquery'
 
 import './Test.css';
+
+const socket = openSocket('http://10.33.2.152:7000');
 
 class Test extends Component {
   constructor(props) {
@@ -12,10 +16,11 @@ class Test extends Component {
     
     this.state = {
       type: '',
+      currentNum: 1,
       max: '',
-      question: '',
-      answers: [],
-      correctAnswer: '',
+      question: 'f(x) = 5 * x',
+      answers: [5553234, 10, 15, 20],
+      correctAnswer: '5',
     }
   }
 
@@ -28,17 +33,28 @@ class Test extends Component {
 
   nextQuestion() {
     $.get('http://10.33.2.152:3000/api/getQuestion', (data, status) => {
-      
+      console.log(data);
     }); 
   }
 
+  checkAnswer() {
+
+  }
+
   render() {
-    const props = {...this.state};
+    socket.on('clientQ', function(data){
+      console.log(data);
+    })
 
     return (
       <div>
         <Container>
-          <TestCard quesionData={props} nextQuestion={this.nextQuestion.bind(this)}/>
+          <TestCard question={this.state.question}
+                    nextQuestion={this.nextQuestion.bind(this)}
+                    answers={this.state.answers}
+                    currentProblem={this.state.currentNum}
+                    checkAnswer={this.checkAnswer}
+                    />
         </Container>
       </div>
     );
