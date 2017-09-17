@@ -78,7 +78,7 @@ class Practice extends Component {
                       />
                     </Col>
                     <Col lg={2}>
-                      <Link to={`/test/${this.props.uid}/${this.state.subject.value}/${this.state.numOfQuestions.value}`}><button className="btn inlineLeft" type="submit">Submit</button></Link>
+                      <Link to={`/test/practice/${this.props.uid}/${this.state.subject.value}/${this.state.numOfQuestions.value}`}><button className="btn inlineLeft" type="submit">Submit</button></Link>
                     </Col>
                 </Row>
               </div>

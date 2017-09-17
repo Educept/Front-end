@@ -38,8 +38,8 @@ class App extends Component {
           <Practice uid={this.state.uid}/>
         )} /> 
         <Route path="/sites/" component={Sites} />
-        <Route path="/test/:uid/:subject/:numProblems" render={() => (
-          <Test />
+        <Route path="/test/practice/:uid/:subject/:numProblems" render={() => (
+          <Test />  
         )}/>
       </div>
     );

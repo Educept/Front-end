@@ -1,12 +1,24 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { Component } from 'react';
 
-const Test = props => {
-  return (
-    <div>
-      <h3>Hello World</h3>
-    </div>
-  );
-};
+class Test extends Component {
+  constructor(props) {
+    super(props);
+    
+    this.state = {
+      question: '',
+      answers: [],
+      correctAnswer: '',
+    }
+  }
+  
+
+  render() {
+    return (
+      <div>
+        
+      </div>
+    );
+  }
+}
 
 export default Test;
