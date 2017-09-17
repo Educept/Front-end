@@ -4,7 +4,8 @@ import { Container } from 'react-grid-system'
 import openSocket from 'socket.io-client';
 
 import TestCard from './TestCard';
-import $ from 'jquery'
+import $ from 'jquery';
+import shuffle from 'shuffle-array'
 
 import './Test.css';
 
@@ -18,9 +19,10 @@ class Test extends Component {
       type: '',
       currentNum: 1,
       max: '',
-      question: 'f(x) = 5 * x',
-      answers: [5553234, 10, 15, 20],
-      correctAnswer: '5',
+      question: '',
+      answers: [],
+      correctAnswer: '',
+      numberCorrect: 0,
     }
   }
 
@@ -32,19 +34,38 @@ class Test extends Component {
   }  
 
   nextQuestion() {
-    $.get('http://10.33.2.152:3000/api/getQuestion', (data, status) => {
-      console.log(data);
-    }); 
+    $.get('http://10.33.2.152:3000/api/getQuestion', (data, status) => {}); 
+
+    socket.on('clientQ', (data) => {
+      console.log(data);  
+      this.setState({question: data[0]});
+      this.setState({correctAnswer: data[1]});
+      let answers = [data[1], data[2], data[3], data[4]];
+      answers = shuffle(answers);
+      this.setState({answers});
+    })
+
+    this.setState({currentNum: this.state.currentNum++});
   }
 
-  checkAnswer() {
+  getAnswerIndex() {
+    for (let i = 0; i < 4; i++) {
+      if (this.state.answers[i] === this.state.correctAnswer) {
+        return i;
+      }
+    }
+    return -1;
+  }
 
+  checkAnswer(userAnswer, correctAnswer) {
+    if (userAnswer === correctAnswer) {
+      this.setState({numberCorrect: this.state.numberCorrect++});
+      return true;
+    }
+    return false;
   }
 
   render() {
-    socket.on('clientQ', function(data){
-      console.log(data);
-    })
 
     return (
       <div>
@@ -53,7 +74,8 @@ class Test extends Component {
                     nextQuestion={this.nextQuestion.bind(this)}
                     answers={this.state.answers}
                     currentProblem={this.state.currentNum}
-                    checkAnswer={this.checkAnswer}
+                    getAnswerIndex={this.getAnswerIndex.bind(this)}
+                    checkAnswer={this.checkAnswer.bind(this)}
                     />
         </Container>
       </div>

@@ -24,16 +24,14 @@ class App extends Component {
         <div className="top-strip"></div>
         <Container>
           <Row id="nav-row">
-            <Col md={6} className="title">
+            <Col md={8} className="title">
               <span className="blue">Edu</span>cept
             </Col>
-            <Col lg={2} className="navLink"><NavLink to={`/flashcards/${this.state.uid}`} activeClassName="activeLink">Flashcards</NavLink></Col>
             <Col lg={2} className="navLink"><NavLink to={`/practice/${this.state.uid}`} activeClassName="activeLink">Practice</NavLink></Col>
             <Col lg={2} className="navLink"><NavLink to={`/sites/${this.state.uid}`} activeClassName="activeLink">Sites</NavLink></Col>
           </Row>
         </Container>
 
-        <Route path="/flashcards/" component={Flashcards} />
         <Route path="/practice/" render={() => (
           <Practice uid={this.state.uid}/>
         )} /> 
