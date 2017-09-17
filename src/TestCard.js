@@ -25,23 +25,23 @@ const TestCard = props => {
         document.querySelector(`#radiob-${answerNumber}`).style.backgroundColor = '#76FF03';
         document.querySelector(`#radiob-${userAnswer}`).style.backgroundColor = '#F44336';
       }
+      document.querySelector('#submitButton').textContent = "Next Question";
+      toggle = 1;
     } else {
-
-    }
-  }
-  
-  function handleNext() {
-    props.nextQuestion();
-    
-    for (let i = 0; i < 4; i++) {
-      document.querySelector(`#radiob-${i}`).style.backgroundColor = '#fff';
-    }
-
-    document.querySelectorAll('.radio-input').forEach((input, index) => {
-      if (input.checked) {
-        input.checked = false;
+      props.nextQuestion(); 
+      toggle = 0;
+      for (let i = 0; i < 4; i++) {
+        document.querySelector(`#radiob-${i}`).style.backgroundColor = '#fff';
       }
-    });
+
+      document.querySelectorAll('.radio-input').forEach((input, index) => {
+        if (input.checked) {
+          input.checked = false;
+        }
+      });
+
+      document.querySelector('#submitButton').textContent = "Submit";
+    }
   }
 
   return (
@@ -81,7 +81,7 @@ const TestCard = props => {
               </Row>
               <Row>
                 <Col lg={12}>
-                  <button className="btn margin large-btn-font" onClick={submitAnswer}>Submit</button>
+                  <button id="submitButton" className="btn margin large-btn-font" onClick={submitAnswer}>Submit</button>
                 </Col>
               </Row>
             </div>
